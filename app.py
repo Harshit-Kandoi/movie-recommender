@@ -29,10 +29,16 @@ def recommend(movie):
 
     return recommended_movies,recommended_movies_poster
 
-movies_list = pickle.load(open('movie_dict.pkl','rb'))
-movies = pd.DataFrame(movies_list)
+try:
+    movies_list = pickle.load(open('movie_dict.pkl', 'rb'))
+    movies = pd.DataFrame(movies_list)
+except Exception as e:
+    st.error(f"Error loading movie_dict.pkl: {e}")
 
-similarity = pickle.load(open('similarity.pkl','rb'))
+try:
+    similarity = pickle.load(open('similarity.pkl', 'rb'))
+except Exception as e:
+    st.error(f"Error loading similarity.pkl: {e}")
 
 st.title('Movie Recommender System')
 
